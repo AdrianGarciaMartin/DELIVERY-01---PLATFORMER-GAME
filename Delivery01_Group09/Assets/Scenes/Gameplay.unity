@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
+  _jumpForce: 200
 --- !u!114 &155923687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2493,7 +2494,7 @@ GameObject:
   - component: {fileID: 1821473469}
   m_Layer: 0
   m_Name: HighJumpPowerUp
-  m_TagString: Untagged
+  m_TagString: JumpUpgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
