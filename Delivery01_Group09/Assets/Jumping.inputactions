@@ -1,0 +1,71 @@
+{
+    "name": "Jumping",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "3d326f55-e34e-4e55-9b0b-3231e22ba518",
+            "actions": [
+                {
+                    "name": "JumpStart",
+                    "type": "Button",
+                    "id": "e05e788d-f3d9-4e11-99fe-6596082638aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JumpFinished",
+                    "type": "Button",
+                    "id": "669830af-3ed2-4771-a9ec-c19c2340758f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5544bd98-db84-41dd-bbae-4f84a8d6fd72",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "JumpStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c36edbc4-f4b1-4f59-a8b3-8a2942024090",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "JumpFinished",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
