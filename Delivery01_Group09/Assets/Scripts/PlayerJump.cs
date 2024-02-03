@@ -15,6 +15,9 @@ public class PlayerJump : MonoBehaviour
     private float _jumpStartedTime;
     private float _lastVelocityY;
 
+    private bool _extraJump;
+    private bool _canJump = true;
+
     Rigidbody2D _rigidbody;
 
     public ContactFilter2D filter;
@@ -27,25 +30,78 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsPeakReached()) GravityMultiplier();
+        if (DistanceToGround() <= 0.5) _canJump = true;
+
+        if (IsPeakReached())
+        {
+            //_extraJump = true;
+
+            GravityMultiplier();
+        }
 
         //if (WallSliding) SetWallSlide();
     }
 
     public void OnJumpStart()
     {
-        SetGravity();
+        if (_canJump)
+        {
+            _canJump = false;
 
-        var playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
-        _rigidbody.velocity = playerVelocity;
-        _jumpStartedTime = Time.time;
+            SetGravity();
+
+            var playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
+            _rigidbody.velocity = playerVelocity;
+            _jumpStartedTime = Time.time;
+
+
+            //if (_extraJump)
+            //{
+            //    Debug.Log("Double Jump");
+
+            //    SetGravity();
+
+            //    //playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
+            //    //_rigidbody.velocity = playerVelocity;
+
+            //    _extraJump = false;
+            //}
+        }
     }
 
     public void OnJumpFinished()
     {
         float timePressed = 1 / Mathf.Clamp01((Time.time - _jumpStartedTime) / _pressTimeToMaxJump);
         _rigidbody.gravityScale *= timePressed;
+
+        //_canJump = true;
     }
+
+    //public void OnDoubleJump()
+    //{
+    //    if (_extraJump)
+    //    {
+    //        SetGravity();
+
+    //        var playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
+    //        _rigidbody.velocity = playerVelocity;
+    //        _jumpStartedTime = Time.time;
+
+    //        _doubleJumpDone = true;
+    //        _extraJump = false;
+    //    }
+    //}
+
+    //public void OnDoubleJumpFinished()
+    //{
+    //    if (_doubleJumpDone)
+    //    {
+    //        float timePressed = 1 / Mathf.Clamp01((Time.time - _jumpStartedTime) / _pressTimeToMaxJump);
+    //        _rigidbody.gravityScale *= timePressed;
+
+    //        _doubleJumpDone = false;
+    //    }
+    //}
 
     private void SetGravity()
     {
@@ -85,11 +141,6 @@ public class PlayerJump : MonoBehaviour
         if (collision.gameObject.name == "HighJumpPowerUp")
         {
             _jumpHeight *= 1.75f;
-        }
-
-        if (collision.gameObject.name == "HighJumpPowerUp")
-        {
-            //Destroy(collision.gameObject); //buscar una forma de hacer esto desde el script del JumpPowerUp
         }
     }
 
