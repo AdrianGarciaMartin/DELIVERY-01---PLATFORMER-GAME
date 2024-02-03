@@ -5,14 +5,93 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public float _jumpHeight;
+    public float _distanceToMaxHeight;
+    public float _speedHorizontal;
+    public float _pressTimeToMaxJump;
+    public float _wallSlideSpeed = 1;
+    public float _gravityMultiplier = 1.2f;
+    private float _jumpStartedTime;
+    private float _lastVelocityY;
+
+    Rigidbody2D _rigidbody;
+
+    public ContactFilter2D filter;
+
     void Start()
     {
-        
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsPeakReached()) GravityMultiplier();
+
+        //if (WallSliding) SetWallSlide();
     }
+
+    public void OnJumpStart()
+    {
+        SetGravity();
+
+        var playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
+        _rigidbody.velocity = playerVelocity;
+        _jumpStartedTime = Time.time;
+    }
+
+    public void OnJumpFinished()
+    {
+        float timePressed = 1 / Mathf.Clamp01((Time.time - _jumpStartedTime) / _pressTimeToMaxJump);
+        _rigidbody.gravityScale *= timePressed;
+    }
+
+    private void SetGravity()
+    {
+        var gravity = 2 * _jumpHeight * (_speedHorizontal * _speedHorizontal) / (_distanceToMaxHeight * _distanceToMaxHeight);
+        _rigidbody.gravityScale = gravity / 9.81f; 
+    }
+
+    private bool IsPeakReached()
+    {
+        bool reached = ((_lastVelocityY * _rigidbody.velocity.y) < 0);
+        _lastVelocityY = _rigidbody.velocity.y;
+
+        return reached;
+    }
+
+    private void GravityMultiplier()
+    {
+        _rigidbody.gravityScale *= _gravityMultiplier;
+    }
+
+    private float GetJumpForce()
+    {
+        return 2 * _jumpHeight * _speedHorizontal / _distanceToMaxHeight;
+    }
+
+    private float DistanceToGround()
+    {
+        RaycastHit2D[] hit = new RaycastHit2D[3];
+
+        Physics2D.Raycast(transform.position, Vector2.down, filter, hit, 10);
+
+        return hit[0].distance;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "HighJumpPowerUp")
+        {
+            _jumpHeight *= 1.75f;
+        }
+
+        if (collision.gameObject.name == "HighJumpPowerUp")
+        {
+            //Destroy(collision.gameObject); //buscar una forma de hacer esto desde el script del JumpPowerUp
+        }
+    }
+
+    
 }

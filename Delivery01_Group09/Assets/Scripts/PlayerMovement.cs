@@ -16,24 +16,19 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
     public bool IsMoving => _isMoving;
 
     [SerializeField]
-    private float Speed = 5;
-    public float JumpHeight;
-    public float DistanceToMaxHeight;
-    public float SpeedHorizontal;
-    public float PressTimeToMaxJump;
-    public float WallSlideSpeed = 1;
+    private float _speed = 5;
+    
     private bool _isMoving;
     PlayerInput _input;
     Rigidbody2D _rigidbody;
-    public ContactFilter2D filter;
-    private float _jumpStartedTime;
-    private float _lastVelocityY;
+    public ContactFilter2D filter; //maybe no hace falta tenerlo aqui
+    
 
-    public float _jumpForce = 200;
+    //public float _jumpForce = 200;
 
     void Start()
     {
-        //_input = GetComponent<PlayerInput>();
+        _input = GetComponent<PlayerInput>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -47,59 +42,9 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
         Move();
     }
 
-    public void OnJumpStarted() //no hace el jump???? AAAAAA
-    {
-        Debug.Log("jump");
-
-        SetGravity();
-
-        var playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
-        _rigidbody.velocity = playerVelocity;
-        _jumpStartedTime = Time.time;
-    }
-
-    public void OnJumpFinished()
-    {
-        float timePressed = 1 / Mathf.Clamp01((Time.time - _jumpStartedTime) / PressTimeToMaxJump);
-        _rigidbody.gravityScale *= timePressed;
-    }
-
-    private void SetGravity()
-    {
-        var gravity = 2 * JumpHeight * (SpeedHorizontal * SpeedHorizontal) / (DistanceToMaxHeight * DistanceToMaxHeight);
-        _rigidbody.gravityScale = gravity / 9.81f;
-    }
-
-    private bool IsPeakReached()
-    {
-        bool reached = ((_lastVelocityY * _rigidbody.velocity.y) < 0);
-        _lastVelocityY = _rigidbody.velocity.y;
-
-        return reached;
-    }
-
-    private void GravityMultiplier()
-    {
-        _rigidbody.gravityScale *= 1.2f; //vigila hardcodeo
-    }
-
-    private float GetJumpForce()
-    {
-        return 2 * JumpHeight * SpeedHorizontal / DistanceToMaxHeight;
-    }
-
-    private float DistanceToGround()
-    {
-        RaycastHit2D[] hit = new RaycastHit2D[3];
-
-        Physics2D.Raycast(transform.position, Vector2.down, filter, hit, 10);
-
-        return hit[0].distance;
-    }
-
     private void Move()
     {
-        Vector2 direction = new Vector2(_input.MovementHorizontal * Speed, _rigidbody.velocity.y);
+        Vector2 direction = new Vector2(_input.MovementHorizontal * _speed, _rigidbody.velocity.y);
 
         _rigidbody.velocity = direction;
         _isMoving = direction.magnitude > 0.01f;
@@ -112,9 +57,6 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "HighJumpPowerUp")
-        {
-            _jumpForce *= 2;
-        }
+        
     }
 }

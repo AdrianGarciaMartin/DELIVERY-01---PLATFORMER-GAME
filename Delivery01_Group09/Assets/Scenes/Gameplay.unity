@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 155923687}
   - component: {fileID: 155923686}
   - component: {fileID: 155923688}
+  - component: {fileID: 155923689}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -498,12 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e841aef036f024f875047c8fd43cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  JumpHeight: 5
-  DistanceToMaxHeight: 1.5
-  SpeedHorizontal: 2
-  PressTimeToMaxJump: 0.5
-  WallSlideSpeed: 1
+  _speed: 5
   filter:
     useTriggers: 0
     useLayerMask: 1
@@ -518,7 +514,6 @@ MonoBehaviour:
     maxDepth: 100
     minNormalAngle: 0
     maxNormalAngle: 0
-  _jumpForce: 200
 --- !u!114 &155923687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,6 +557,38 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &155923689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155923679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8da824c35fc6ae4b9ae0e504942ec9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpHeight: 2
+  _distanceToMaxHeight: 0.75
+  _speedHorizontal: 2
+  _pressTimeToMaxJump: 0.5
+  _wallSlideSpeed: 1
+  _gravityMultiplier: 1.2
+  filter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    minDepth: 0
+    maxDepth: 100
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &227829529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,6 +2570,7 @@ GameObject:
   - component: {fileID: 1821473471}
   - component: {fileID: 1821473470}
   - component: {fileID: 1821473469}
+  - component: {fileID: 1821473472}
   m_Layer: 0
   m_Name: HighJumpPowerUp
   m_TagString: JumpUpgrade
@@ -2662,6 +2690,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1821473472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821473468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0315dc16fcf4c734dbb96c896241a489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1918508235
 GameObject:
   m_ObjectHideFlags: 0
