@@ -35,9 +35,14 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DistanceToGround() <= 0.5) _canJump = true;
+        if (DistanceToGround() <= 0.5)
+        {
+            _canJump = true;
+        }
+            
+            
 
-        if (IsPeakReached())
+        if (IsPeakReached() && _canJump == false)
         {
             //_extraJump = true;
 
@@ -134,8 +139,8 @@ public class PlayerJump : MonoBehaviour
 
     private float DistanceToGround()
     {
-        RaycastHit2D[] hit = new RaycastHit2D[3];
-
+        RaycastHit2D[] hit = new RaycastHit2D[2];
+        
         Physics2D.Raycast(transform.position, Vector2.down, filter, hit, 10);
 
         return hit[0].distance;

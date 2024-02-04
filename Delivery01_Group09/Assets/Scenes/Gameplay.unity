@@ -383,7 +383,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!58 &155923681
 CircleCollider2D:
@@ -596,7 +596,7 @@ MonoBehaviour:
     m_Bits: 256
   WhatIsPlatform:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   GroundCheckPoint: {fileID: 1918508236}
   FrontCheckPoint: {fileID: 481955786}
   RoofCheckPoint: {fileID: 254180828}
@@ -2283,9 +2283,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 19a53b95949495e49b540260405b6b86, type: 3}
-  m_Color: {r: 1, g: 0.040714726, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FlipX: 1
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
@@ -2684,6 +2684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029841544778941955, guid: 045f95861bc5f844098e32de92336392,
+        type: 3}
+      propertyPath: m_DefaultActionMap
+      value: ee771439-8732-4a0e-b078-919a27fa8afd
       objectReference: {fileID: 0}
     - target: {fileID: 4194715004735060549, guid: 045f95861bc5f844098e32de92336392,
         type: 3}

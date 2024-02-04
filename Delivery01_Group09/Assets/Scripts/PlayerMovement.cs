@@ -40,15 +40,15 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
     {
         Move();
 
-        if (_rigidbody.velocity.x < 0f) // José Luis Mayhua-Charalla Espinoza, transform scale to player movement but cannot be adjusted backwards.
-        { transform.localScale = new Vector2(-1, 1); }
-        else
-        { transform.localScale = Vector2.one; }
+        //if (_rigidbody.velocity.x < 0f) // José Luis Mayhua-Charalla Espinoza, transform scale to player movement but cannot be adjusted backwards.
+        //{ transform.localScale = new Vector2(-1, 1); }
+        //else
+        //{ transform.localScale = Vector2.one; }
 
-        if (_rigidbody.velocity.y < 0f)
-        { transform.localScale = new Vector2(-1, 1); }
-        else
-        { transform.localScale = Vector2.one; }
+        //if (_rigidbody.velocity.y < 0f)
+        //{ transform.localScale = new Vector2(-1, 1); }
+        //else
+        //{ transform.localScale = Vector2.one; }
 
         /*if (_isGrounded) {
             ActivatecollisionDetection(true);

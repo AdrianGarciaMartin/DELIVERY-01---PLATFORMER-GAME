@@ -22,13 +22,15 @@ public class SceneLoader : MonoBehaviour
     public void OnEnterGameplayScene()
     {
 
-        if (!_gameplayScene)
-        {
+        SceneManager.LoadScene("Gameplay");
 
-            SceneManager.LoadScene("Gameplay");
+        //if (!_gameplayScene)
+        //{
 
-            _gameplayScene = true;
-        }
+        //    SceneManager.LoadScene("Gameplay");
+
+        //    _gameplayScene = true;
+        //}
     }
 
     public void EnterExitScene() //ejecutar al morir
