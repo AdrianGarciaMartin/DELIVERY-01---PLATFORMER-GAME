@@ -14,11 +14,19 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
     //si hay dudas como muy tarde mandarle mail el sabado (el domingo no responderá)
 {
     public bool IsMoving => _isMoving;
+    //public CollisionDetection _collisionDetection;
 
     [SerializeField]
     private float _speed = 5;
-    
+    /*[SerializeField] private GameObject[] _IsGrounded;
+    [SerializeField] private GameObject[] _IsTouchingRoof;
+    [SerializeField] private GameObject[] _IsPlatformGround;*/
+
+
     private bool _isMoving;
+    /*private bool _isGrounded;
+    private bool _isTouchingRoof;
+    private bool _isPlatformGround;*/
     PlayerInput _input;
     Rigidbody2D _rigidbody;
 
@@ -32,23 +40,56 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
     {
         Move();
 
-        if (_rigidbody.velocity.x < 0f)
-        {
-            transform.localScale = new Vector2(-1, 1);
-        }
+        if (_rigidbody.velocity.x < 0f) // José Luis Mayhua-Charalla Espinoza, transform scale to player movement but cannot be adjusted backwards.
+        { transform.localScale = new Vector2(-1, 1); }
         else
-        {
-            transform.localScale = Vector2.one;
-        }
+        { transform.localScale = Vector2.one; }
 
         if (_rigidbody.velocity.y < 0f)
-        {
-            transform.localScale = new Vector2(-1, 1);
-        }
+        { transform.localScale = new Vector2(-1, 1); }
         else
-        {
-            transform.localScale = Vector2.one;
+        { transform.localScale = Vector2.one; }
+
+        /*if (_isGrounded) {
+            ActivatecollisionDetection(true);
+            if (_rigidbody.velocity.x < 0f)
+            { transform.localScale = new Vector2(-1, 1); }
+            else
+            { transform.localScale = Vector2.one; }
+
+            if (_rigidbody.velocity.y < 0f)
+            { transform.localScale = new Vector2(-1, 1); }
+            else
+            { transform.localScale = Vector2.one; }
         }
+
+        if (_isTouchingRoof)
+        {
+            ActivatecollisionDetection(true);
+            if (_rigidbody.velocity.x < 0f)
+            { transform.localScale = new Vector2(-1, 1); }
+            else
+            { transform.localScale = Vector2.one; }
+
+            if (_rigidbody.velocity.y < 0f)
+            { transform.localScale = new Vector2(-1, 1); }
+            else
+            { transform.localScale = Vector2.one; }
+        }
+
+        if (_isPlatformGround)
+        {
+            ActivatecollisionDetection(true);
+            if (_rigidbody.velocity.x < 0f)
+            { transform.localScale = new Vector2(-1, 1); }
+            else
+            { transform.localScale = Vector2.one; }
+
+            if (_rigidbody.velocity.y < 0f)
+            { transform.localScale = new Vector2(-1, 1); }
+            else
+            { transform.localScale = Vector2.one; }
+        }*/
     }
 
     private void Move()
@@ -68,4 +109,30 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
     {
         
     }
+
+    /*void ActivatecollisionDetection(bool active) // José Luis Mayhua-Charalla Espinoza, searching activates the collision of the object.
+    {
+        foreach (GameObject g in _IsGrounded)
+        {
+            if (_collisionDetection.IsGrounded == true)
+            {
+                g.SetActive(active);
+            }
+        }
+
+        foreach (GameObject r in _IsTouchingRoof)
+        {
+            if (_collisionDetection.IsTouchingRoof == true)
+            {
+                r.SetActive(active);
+            }
+        }
+
+        foreach (GameObject p in _IsPlatformGround)
+        {
+            if (_collisionDetection.IsPlatForm == true)
+            {
+                p.SetActive(active);
+            }
+        }*/
 }
