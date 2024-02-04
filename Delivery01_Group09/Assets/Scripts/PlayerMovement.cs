@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
 
-    //mit o mid license para las licencias de codigo
+    //mit license para las licencias de codigo
 
     //creative common también para la musica
 
@@ -21,10 +21,6 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
     private bool _isMoving;
     PlayerInput _input;
     Rigidbody2D _rigidbody;
-    public ContactFilter2D filter; //maybe no hace falta tenerlo aqui
-    
-
-    //public float _jumpForce = 200;
 
     void Start()
     {
@@ -34,11 +30,6 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space) && _rigidbody != null /*&& _rigidbody.velocity.magnitude == 0*/)
-        //{
-        //    Jump();
-        //}
-
         Move();
 
         if (_rigidbody.velocity.x < 0f)
