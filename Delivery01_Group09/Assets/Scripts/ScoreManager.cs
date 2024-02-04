@@ -25,6 +25,14 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        scoreText.text = points.ToString();
+        if (points <= 9)
+        {
+            scoreText.text = "SCORE: 0" + points.ToString();
+        }
+        else
+        {
+            scoreText.text = "SCORE: " + points.ToString();
+        }
+        
     }
 }
