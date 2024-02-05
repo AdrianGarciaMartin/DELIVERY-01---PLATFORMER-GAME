@@ -11,14 +11,12 @@ public class PlayerJump : MonoBehaviour
     public float _distanceToMaxHeight;
     public float _speedHorizontal;
     public float _pressTimeToMaxJump;
-    public float _wallSlideSpeed = 1;
     public float _gravityMultiplier = 1.2f;
     private float _jumpStartedTime;
     private float _lastVelocityY;
     private CollisionDetection _collisionDetection;
     private bool _extraJump;
     private bool _canJump = true;
-    public float WallSlideSpeed = 1;
 
     Rigidbody2D _rigidbody;
 
@@ -49,7 +47,7 @@ public class PlayerJump : MonoBehaviour
             GravityMultiplier();
         }
 
-        if (WallSliding) SetWallSlide();
+        //if (WallSliding) SetWallSlide();
     }
 
     public void OnJumpStart()
@@ -154,10 +152,10 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    private void SetWallSlide()
-    {
-        //_rigidbody.gravityScale = 0.8f;
-        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,
-            Mathf.Max(_rigidbody.velocity.y, -WallSlideSpeed));
-    }
+    //private void SetWallSlide()
+    //{
+    //    //_rigidbody.gravityScale = 0.8f;
+    //    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,
+    //        Mathf.Max(_rigidbody.velocity.y, -WallSlideSpeed));
+    //}
 }

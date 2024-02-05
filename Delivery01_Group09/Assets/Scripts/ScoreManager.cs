@@ -5,33 +5,43 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    private Text scoreText;
+    public Text _scoreText; 
 
-    public static int points;
+    public static int _points;
 
-    // Start is called before the first frame update
+    //private void Awake()
+    //{
+    //    DontDestroyOnLoad(gameObject);
+    //}
+
     void Start()
     {
-        scoreText = GetComponent<Text>();
-        points = 0;
+        //_scoreText = GetComponent<Text>();
+        _points = 0;
     }
 
-    // Update is called once per frame
     public void AddPoints(int pointsNumber)
     {
-        points += pointsNumber;
-        Debug.Log(points);
+        _points += pointsNumber;
+        Debug.Log(_points);
     }
 
-    private void Update()
+    public int GetPoints() //ni idea de si va a funcionar, tengo que conseguir pasar esta variable para que se muestre en la pantalla de muerte
     {
-        if (points <= 9)
+        return _points;
+    }
+
+    void Update()
+    {
+        Debug.Log(_points);
+
+        if (_points <= 9)
         {
-            scoreText.text = "SCORE: 0" + points.ToString();
+            _scoreText.text = "SCORE: 0" + _points.ToString();
         }
         else
         {
-            scoreText.text = "SCORE: " + points.ToString();
+            _scoreText.text = "SCORE: " + _points.ToString();
         }
         
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
 
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
     private bool _isPlatformGround;*/
     PlayerInput _input;
     Rigidbody2D _rigidbody;
+    private float _horizontalDir;
 
     void Start()
     {
@@ -36,9 +38,16 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
+    void FixedUpdate()
+    {
+        Vector2 velocity = _rigidbody.velocity;
+        velocity.x = _horizontalDir * _speed;
+        _rigidbody.velocity = velocity;
+    }
+
     void Update()
     {
-        Move();
+        //Move();
 
         //if (_rigidbody.velocity.x < 0f) // José Luis Mayhua-Charalla Espinoza, transform scale to player movement but cannot be adjusted backwards.
         //{ transform.localScale = new Vector2(-1, 1); }
@@ -92,12 +101,18 @@ public class PlayerMovement : MonoBehaviour //creative commons (al crear assets)
         }*/
     }
 
-    private void Move()
-    {
-        Vector2 direction = new Vector2(_input.MovementHorizontal * _speed, _rigidbody.velocity.y);
+    //private void Move()
+    //{
+    //    Vector2 direction = new Vector2(_input.MovementHorizontal * _speed, _rigidbody.velocity.y);
 
-        _rigidbody.velocity = direction;
-        _isMoving = direction.magnitude > 0.01f;
+    //    _rigidbody.velocity = direction;
+    //    _isMoving = direction.magnitude > 0.01f;
+    //}
+
+    void OnMove(InputValue value) 
+    {
+        var inputVal = value.Get<Vector2>();
+        _horizontalDir = inputVal.x;
     }
 
     //private void Jump()

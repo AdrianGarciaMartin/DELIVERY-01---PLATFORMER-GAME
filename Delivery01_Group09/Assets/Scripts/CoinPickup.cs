@@ -23,7 +23,7 @@ public class CoinPickup : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             this.gameObject.SetActive(false);
-            ScoreManager.points += coinValue;
+            ScoreManager._points += coinValue;
             Debug.Log(coinValue);
         }
     }
