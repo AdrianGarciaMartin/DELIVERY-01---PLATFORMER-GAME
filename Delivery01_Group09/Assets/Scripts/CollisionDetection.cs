@@ -66,7 +66,6 @@ public class CollisionDetection : MonoBehaviour
         CheckGrounded();
         CheckPlatformed();
         CheckFront();
-        //CheckRoof();
     }
 
     private void CheckFront()
@@ -88,9 +87,6 @@ public class CollisionDetection : MonoBehaviour
         var colliders = Physics2D.OverlapCircleAll(GroundCheckPoint.position, _checkRadius, WhatIsGround);
 
         _isGrounded = (colliders.Length > 0);
-
-        //if (!_wasGrounded && _isGrounded) SendMessage("OnLanding");
-        //_wasGrounded = _isGrounded;
     }
 
     private void CheckPlatformed()
@@ -99,9 +95,6 @@ public class CollisionDetection : MonoBehaviour
 
         _isPlatformGround = (colliders.Length > 0);
         if (_isPlatformGround) CurrentPlatform = colliders[0].transform;
-
-        //if (!_wasGrounded && _isGrounded) SendMessage("OnLanding");
-        //_wasGrounded = _isGrounded;
     }
 
     private void CheckDistanceToGround()

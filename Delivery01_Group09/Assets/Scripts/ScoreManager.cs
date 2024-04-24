@@ -9,14 +9,9 @@ public class ScoreManager : MonoBehaviour
 
     public static int _points;
 
-    //private void Awake()
-    //{
-    //    DontDestroyOnLoad(gameObject);
-    //}
 
     void Start()
     {
-        //_scoreText = GetComponent<Text>();
         _points = 0;
     }
 
@@ -26,15 +21,13 @@ public class ScoreManager : MonoBehaviour
         Debug.Log(_points);
     }
 
-    public int GetPoints() //ni idea de si va a funcionar, tengo que conseguir pasar esta variable para que se muestre en la pantalla de muerte
+    public int GetPoints() 
     {
         return _points;
     }
 
     void Update()
     {
-        Debug.Log(_points);
-
         if (_points <= 9)
         {
             _scoreText.text = "SCORE: 0" + _points.ToString();
@@ -43,6 +36,5 @@ public class ScoreManager : MonoBehaviour
         {
             _scoreText.text = "SCORE: " + _points.ToString();
         }
-        
     }
 }

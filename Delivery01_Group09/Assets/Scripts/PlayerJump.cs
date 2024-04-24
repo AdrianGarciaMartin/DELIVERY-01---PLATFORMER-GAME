@@ -5,7 +5,6 @@ using System;
 
 public class PlayerJump : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     public float _jumpHeight;
     public float _distanceToMaxHeight;
@@ -30,7 +29,6 @@ public class PlayerJump : MonoBehaviour
         _collisionDetection = GetComponent<CollisionDetection>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (DistanceToGround() <= 0.5)
@@ -42,12 +40,8 @@ public class PlayerJump : MonoBehaviour
 
         if (IsPeakReached() && _canJump == false)
         {
-            //_extraJump = true;
-
             GravityMultiplier();
         }
-
-        //if (WallSliding) SetWallSlide();
     }
 
     public void OnJumpStart()
@@ -61,19 +55,6 @@ public class PlayerJump : MonoBehaviour
             var playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
             _rigidbody.velocity = playerVelocity;
             _jumpStartedTime = Time.time;
-
-
-            //if (_extraJump)
-            //{
-            //    Debug.Log("Double Jump");
-
-            //    SetGravity();
-
-            //    //playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
-            //    //_rigidbody.velocity = playerVelocity;
-
-            //    _extraJump = false;
-            //}
         }
     }
 
@@ -81,35 +62,7 @@ public class PlayerJump : MonoBehaviour
     {
         float timePressed = 1 / Mathf.Clamp01((Time.time - _jumpStartedTime) / _pressTimeToMaxJump);
         _rigidbody.gravityScale *= timePressed;
-
-        //_canJump = true;
     }
-
-    //public void OnDoubleJump()
-    //{
-    //    if (_extraJump)
-    //    {
-    //        SetGravity();
-
-    //        var playerVelocity = new Vector2(_rigidbody.velocity.x, GetJumpForce());
-    //        _rigidbody.velocity = playerVelocity;
-    //        _jumpStartedTime = Time.time;
-
-    //        _doubleJumpDone = true;
-    //        _extraJump = false;
-    //    }
-    //}
-
-    //public void OnDoubleJumpFinished()
-    //{
-    //    if (_doubleJumpDone)
-    //    {
-    //        float timePressed = 1 / Mathf.Clamp01((Time.time - _jumpStartedTime) / _pressTimeToMaxJump);
-    //        _rigidbody.gravityScale *= timePressed;
-
-    //        _doubleJumpDone = false;
-    //    }
-    //}
 
     private void SetGravity()
     {
@@ -151,11 +104,4 @@ public class PlayerJump : MonoBehaviour
             _jumpHeight *= 1.75f;
         }
     }
-
-    //private void SetWallSlide()
-    //{
-    //    //_rigidbody.gravityScale = 0.8f;
-    //    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,
-    //        Mathf.Max(_rigidbody.velocity.y, -WallSlideSpeed));
-    //}
 }

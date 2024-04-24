@@ -24,7 +24,6 @@ public class CoinPickup : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             ScoreManager._points += coinValue;
-            Debug.Log(coinValue);
         }
     }
 }
